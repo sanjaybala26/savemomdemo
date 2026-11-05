@@ -1,5 +1,5 @@
-// Base URL of the Spring Boot backend server
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+// Base URL of the Spring Boot backend server (defaults to live Render backend in production, localhost in development)
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? 'https://carequeue-backend-0f3l.onrender.com' : 'http://localhost:8080');
 
 const TOKEN_KEY = 'carequeue_auth_token';
 
