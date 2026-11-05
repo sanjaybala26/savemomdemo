@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: carequeue-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: SERVER_PORT
+        value: "8080"
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://carequeue-frontend.vercel.app,http://localhost:5173
+      - key: FLYWAY_ENABLED
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION_MS
+        value: "86400000"
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
