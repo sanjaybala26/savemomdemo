@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.time.Instant;
 
 /**
@@ -54,9 +55,13 @@ public class HealthController {
         }
 
         try (Connection connection = dataSource.getConnection()) {
-            // Validates connection with a 2-second timeout
             if (connection.isValid(2)) {
-                return "UP (Connected)";
+                String catalog = connection.getCatalog();
+                boolean usersExist = false;
+                try (ResultSet rs = connection.getMetaData().getTables(catalog, null, "users", null)) {
+                    usersExist = rs.next();
+                }
+                return "UP (Connected to: " + catalog + ", tablesCreated: " + usersExist + ")";
             } else {
                 return "DOWN (Invalid connection)";
             }
