@@ -1,12 +1,10 @@
-# Stage 1: Build the Spring Boot application using Maven and Eclipse Temurin JDK 21
-FROM eclipse-temurin:21-jdk-alpine AS builder
+# Stage 1: Build the Spring Boot application using official Maven with Eclipse Temurin JDK 21
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /app
-COPY mvnw pom.xml ./
-COPY .mvn .mvn
-RUN sed -i 's/\r$//' mvnw && chmod +x mvnw
-RUN ./mvnw dependency:go-offline -B
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
 COPY src src
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Stage 2: Lightweight JRE 21 runtime
 FROM eclipse-temurin:21-jre-alpine
