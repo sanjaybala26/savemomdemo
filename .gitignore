@@ -1,0 +1,33 @@
+# Environment files containing secrets
+.env
+*.env
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+# Build and dependency outputs
+target/
+**/target/
+dist/
+**/dist/
+node_modules/
+**/node_modules/
+
+# Logs and scratch scripts
+*.log
+**/logs/
+scratch/
+**/scratch/
+
+# IDE and Editor files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS generated files
+.DS_Store
+Thumbs.db

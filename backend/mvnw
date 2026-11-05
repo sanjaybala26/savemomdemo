@@ -1,0 +1,8 @@
+#!/bin/sh
+# Maven Wrapper Shell Script for macOS / Linux
+if command -v mvn >/dev/null 2>&1; then
+  exec mvn "$@"
+else
+  echo "Error: Maven is not installed on PATH. Please install Maven or run via IDE."
+  exit 1
+fi
