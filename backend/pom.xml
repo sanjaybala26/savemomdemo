@@ -49,6 +49,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Flyway migration core and MySQL module -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
+
         <!-- Spring Boot Test starter for unit and integration testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,23 +66,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <!-- Flyway migration profile (activate with -Pflyway when online or with flyway cached) -->
-        <profile>
-            <id>flyway</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.flywaydb</groupId>
-                    <artifactId>flyway-core</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.flywaydb</groupId>
-                    <artifactId>flyway-mysql</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
